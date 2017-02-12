@@ -4,25 +4,16 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Hero } from './hero';
-import { HEROES } from './mock-heroes';
+//import { HEROES } from './mock-heroes';
 
 @Injectable()
 export class HeroService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private heroesUrl = 'api/heroes';  // URL to web api
+  private heroesUrl = '/api/heroes';  // URL to web api
 
   constructor(private http: Http) { }
-	
-	getHeroes(): Promise<Hero[]> {
-    return Promise.resolve(HEROES);
-  }
 
-   getHero(id: number): Promise<Hero> {
-    return this.getHeroes()
-               .then(heroes => heroes.find(hero => hero.id === id));
-  }
-  /**
   getHeroes(): Promise<Hero[]> {
     return this.http.get(this.heroesUrl)
                .toPromise()
@@ -68,5 +59,5 @@ export class HeroService {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
-  **/
+  
 }
